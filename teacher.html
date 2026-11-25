@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YOUR DAY — Кабинет преподавателя</title>
+<link rel="stylesheet" href="/static/css/teacher.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="brand-mark">YD</div><div><b>YOUR DAY</b><small>TEACHER PORTAL</small></div></div>
+    <div class="teacher-mini"><div class="avatar">АС</div><div><b>Анна Сергеевна</b><small>Преподаватель</small></div></div>
+    <nav>
+      <button class="nav active" data-page="home">▦ <span>Главная</span></button>
+      <button class="nav" data-page="journal">▤ <span>Электронный журнал</span></button>
+      <button class="nav" data-page="materials">▧ <span>Учебные материалы</span></button>
+      <button class="nav" data-page="messages">✉ <span>Сообщения</span></button>
+      <button class="nav" data-page="notifications">♧ <span>Уведомления</span></button>
+      <button class="nav" data-page="groups">♧ <span>Мои группы</span></button>
+      <button class="nav" data-page="schedule">▦ <span>Расписание</span></button>
+      <button class="nav" data-page="profile">◎ <span>Мой профиль</span></button>
+    </nav>
+    <div class="side-bottom"><div class="online-dot"></div> Учебный год 2026–2027</div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><button class="hamb" id="hamb">☰</button><div><small>ЛИЧНЫЙ КАБИНЕТ</small><h1 id="pageTitle">Главная</h1></div><div class="top-right"><span class="bell">♧</span><div class="avatar small">АС</div></div></header>
+    <section id="home" class="page active">
+      <div class="welcome"><div><span class="eyebrow" id="teacherToday"></span><h2>Добрый день, преподаватель!</h2><p>Здесь собраны ваши дисциплины, группы и ближайшие занятия.</p></div><div class="welcome-icon">✦</div></div>
+      <div class="stats">
+        <div class="stat"><span>Мои дисциплины</span><b>—</b><small>по назначениям администратора</small></div>
+        <div class="stat"><span>Учебные группы</span><b>—</b><small>по назначениям администратора</small></div>
+        <div class="stat"><span>Студенты</span><b>—</b><small>по данным групп</small></div>
+        <div class="stat"><span>Занятия сегодня</span><b>—</b><small>по расписанию</small></div>
+      </div>
+      <div class="section-head"><div><h3>Мои дисциплины</h3><p>Предметы назначены администратором — выбирать их вручную не нужно.</p></div></div>
+      <div class="subject-grid" id="homeSubjects"></div>
+      <div class="two-col"><div class="panel"><div class="panel-head"><h3>Ближайшие занятия</h3><button class="link-btn" data-go="schedule">Все расписание →</button></div><div id="upcoming"></div></div><div class="panel"><div class="panel-head"><h3>Быстрый переход</h3></div><button class="quick" data-go="journal">▤ Открыть электронный журнал <span>→</span></button><button class="quick" data-go="materials">▧ Загрузить лекцию или силлабус <span>→</span></button></div></div>
+    </section>
+    <section id="journal" class="page">
+      <div class="section-head"><div><h2>Электронный журнал</h2><p>Посещаемость, баллы за лекции и результаты модулей.</p></div></div>
+      <div class="toolbar">
+        <label>Дисциплина<select id="journalSubject"></select></label>
+        <label>Группа<select id="journalGroup"></select></label>
+        <label>Тип занятия<select id="lessonType"><option>Лекция</option><option>Лабораторная</option><option>Практика</option></select></label>
+        <label>Дата<input id="lessonDate" type="date" ></label>
+      </div>
+      <div class="notice"><b>Обозначения посещаемости:</b> Был — присутствовал · НБ — неуважительная причина · У — уважительная причина · Б — болел. При отсутствии баллы за занятие автоматически становятся 0, но преподаватель может исправить их вручную.</div>
+      <div class="panel">
+        <div class="panel-head"><div><h3>Посещаемость и баллы за занятие</h3><small id="journalCaption"></small></div><button class="primary" id="saveLesson">Сохранить занятие</button></div>
+        <div class="table-wrap"><table><thead><tr><th>№</th><th>Студент</th><th>Посещение</th><th>Баллы за занятие</th><th>Комментарий</th></tr></thead><tbody id="attendanceRows"></tbody></table></div>
+      </div>
+      <div class="panel module-panel">
+        <div class="panel-head"><div><h3>Баллы за модуль</h3><small>Основной модуль — максимум 21 балл. Итоговый модульный балл — максимум 25.</small></div><label>Модуль<select id="moduleSelect"><option value="1">Модуль 1</option><option value="2">Модуль 2</option></select></label><button class="primary" id="saveModule">Сохранить баллы модуля</button></div>
+        <div class="table-wrap"><table><thead><tr><th>Студент</th><th>Лекции</th><th>Лабораторные</th><th>Другие работы</th><th>Основной балл</th><th>Доп. баллы</th><th>Итого / 25</th></tr></thead><tbody id="moduleRows"></tbody></table></div>
+        <div class="rounding-note">Округление: дробная часть строго больше 0,5 — округляем вверх. Например, 24,5 → 24; 24,6 → 25.</div>
+      </div>
+    </section>
+    <section id="materials" class="page">
+      <div class="section-head"><div><h2>Учебные материалы</h2><p>Ваши предметы уже назначены. Выберите дисциплину, чтобы управлять её содержимым.</p></div></div>
+      <div class="subject-grid" id="materialSubjects"></div>
+      <div id="courseWorkspace" class="panel hidden">
+        <div class="panel-head"><div><button class="link-btn" id="backSubjects">← Все дисциплины</button><h2 id="courseTitle"></h2><p id="courseMeta"></p></div><span class="pill">Материалы курса</span></div>
+        <div class="upload-panel"><input type="hidden" id="activeAssignment"><label>Название материала<input id="materialTitle" placeholder="Например: Лекция 1"></label><label>Тип<select id="materialTypeTeacher"><option value="lecture">Лекция</option><option value="presentation">Презентация</option><option value="task">Задание</option><option value="syllabus">Силлабус</option></select></label><input type="file" id="materialFile" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt,.zip"><button class="primary" id="uploadMaterial">Загрузить файл</button></div><div id="materialsList"></div>
+        <div class="panel-head topic-heading"><div><h3>Темы курса</h3><p>Добавляйте темы и прикрепляйте лекции, презентации и задания.</p></div><button class="primary" id="addTopic">+ Создать тему</button></div>
+        <div id="topicsList"></div>
+      </div>
+    </section>
+    <section id="groups" class="page"><div class="section-head"><div><h2>Мои группы</h2><p>Группы закреплены за вами администрацией.</p></div></div><div class="subject-grid" id="groupsGrid"></div></section>
+    <section id="schedule" class="page"><div class="section-head"><div><h2>Расписание</h2><p>Отображаются только занятия, назначенные вам.</p></div></div><div class="panel"><div id="scheduleList"></div></div></section>
+    <section id="notifications" class="page"><div class="section-head"><div><h2>Уведомления</h2><p>Обновления учебного процесса и расписания.</p></div></div><div class="panel" id="teacherNotifications"></div></section>
+    <section id="messages" class="page">
+      <div class="section-head"><div><h2>Сообщения</h2><p>Переписка со студентами ваших групп.</p></div></div>
+      <div class="panel"><div class="messenger-start"><label>Новый чат<select id="messageContact"><option value="">Выберите студента</option></select></label><input id="firstMessage" placeholder="Напишите первое сообщение"><button id="startChat" class="primary" type="button">Начать чат</button></div></div>
+      <div class="messenger-layout"><section class="panel"><h3>Мои чаты</h3><div id="teacherChatList"></div></section><section class="panel"><h3 id="teacherChatTitle">Выберите чат</h3><div id="teacherChatMessages" class="chat-messages"></div><form id="teacherMessageForm" class="messenger-send"><input id="teacherMessageText" placeholder="Сообщение..." maxlength="5000" required><button class="primary" type="submit">Отправить</button></form></section></div>
+    </section>
+    <section id="profile" class="page">
+      <div class="section-head"><div><h2>Мой профиль</h2><p>Основная информация преподавателя.</p></div></div>
+      <div class="panel profile-summary">
+        <div class="avatar profile-big" id="profileAvatar">ИА</div>
+        <div><h3 id="profileDisplayName">Иванова Анна Сергеевна</h3><p id="profileDisplayPosition">Старший преподаватель</p><small id="profileDisplayDepartment">Кафедра: Информационные технологии</small><small id="profileDisplayEmail">anna.ivanova@university.edu</small></div>
+      </div>
+      <div class="panel profile-form">
+        <label>ФИО<input id="profileName" value="Иванова Анна Сергеевна" autocomplete="name"></label>
+        <label>Кафедра<input id="profileDepartment" value="Информационные технологии"></label>
+        <label>Должность<input id="profilePosition" value="Старший преподаватель"></label>
+        <label>Email<input id="profileEmail" type="email" value="anna.ivanova@university.edu" autocomplete="email"></label>
+        <button class="primary" id="saveProfile" type="button">Сохранить изменения</button>
+      </div>
+    </section>
+    <footer>YOUR DAY · Кабинет преподавателя</footer>
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+<div class="modal hidden" id="modal"><div class="modal-card"><button class="close" id="closeModal">×</button><h3 id="modalTitle">Создать тему</h3><label>Название темы<input id="topicName" placeholder="Например: Введение в базы данных"></label><label>Описание<textarea id="topicDescription" placeholder="Краткое описание темы"></textarea></label><div class="modal-actions"><button class="ghost" id="cancelModal">Отмена</button><button class="primary" id="confirmTopic">Создать тему</button></div></div></div>
+<script src="/static/js/teacher.js"></script>
+</body></html>

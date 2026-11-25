@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YOUR DAY — Личный кабинет</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/student.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#"><span class="brand-mark">YD</span><span>YOUR <b>DAY</b><small>STUDENT PORTAL</small></span></a>
+    <div class="nav-caption">ЛИЧНЫЙ КАБИНЕТ</div>
+    <nav class="navigation">
+      <button class="nav-item active" data-page="dashboard"><span>▦</span>Главная</button>
+      <button class="nav-item" data-page="session"><span>▤</span>Сессия и оценки</button>
+      <button class="nav-item" data-page="materials"><span>▧</span>Учебные материалы</button>
+      <button class="nav-item" data-page="schedule"><span>▦</span>Расписание</button>
+      <button class="nav-item" data-page="attendance"><span>◷</span>Посещаемость</button>
+      <button class="nav-item" data-page="messages"><span>✉</span>Сообщения</button>
+      <button class="nav-item" data-page="notifications"><span>♧</span>Уведомления</button>
+      <button class="nav-item" data-page="ai"><span>✦</span>AI-помощник</button>
+      <button class="nav-item" data-page="tasks"><span>✓</span>Мои задачи</button>
+      <button class="nav-item" data-page="portfolio"><span>▣</span>Портфолио</button>
+      <button class="nav-item" data-page="group"><span>♧</span>Моя группа</button>
+      <button class="nav-item" data-page="profile"><span>◎</span>Мой профиль</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="help-box"><b>Нужна помощь?</b><p>Напишите в службу поддержки YOUR DAY.</p><button id="supportBtn">Связаться с нами ↗</button></div>
+      <div class="user-mini"><div class="avatar" id="miniAvatar">АБ</div><div><b id="miniName">Загрузка профиля…</b><small>Студент</small></div></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="mobile-menu" id="menuBtn">☰</button>
+      <div class="crumb">YOUR DAY <span>/</span> <b id="crumbName">Главная</b></div>
+      <div class="top-right"><span class="semester-tag">● Осенний семестр 2026–2027</span><div class="avatar small-avatar" id="topAvatar">АБ</div></div>
+    </header>
+
+    <div class="content">
+      <!-- Главная -->
+      <section class="page active" id="page-dashboard">
+        <div class="page-head"><div><div class="eyebrow">ВАШ УЧЕБНЫЙ ПРОФИЛЬ</div><h1>Добро пожаловать, <span id="welcomeName">студент</span>!</h1><p>Здесь собрана основная информация о вашей учёбе.</p></div><div class="date-chip" id="todayDate"></div></div>
+        <div class="quick-grid">
+          <button class="quick-card blue-card" data-goto="session"><span class="quick-icon">▤</span><small>ТЕКУЩИЙ МОДУЛЬ</small><strong>—</strong><span>Перейти к оценкам →</span></button>
+          <button class="quick-card green-card" data-goto="attendance"><span class="quick-icon">◷</span><small>ПОСЕЩАЕМОСТЬ</small><strong>—</strong><span>18 из 20 занятий →</span></button>
+          <button class="quick-card violet-card" data-goto="materials"><span class="quick-icon">▧</span><small>УЧЕБНЫЕ МАТЕРИАЛЫ</small><strong>—</strong><span>Открыть материалы →</span></button>
+          <button class="quick-card orange-card" data-goto="group"><span class="quick-icon">♧</span><small>МОЯ ГРУППА</small><strong>—</strong><span>Данные группы →</span></button>
+        </div>
+        <div class="two-columns">
+          <section class="panel"><div class="panel-title"><div><h2>Ближайшие занятия</h2><p>Ваше расписание на сегодня</p></div><button class="link-button" data-goto="schedule">Всё расписание →</button></div>
+            
+            
+            
+          </section>
+          <section class="panel"><div class="panel-title"><div><h2>Мои данные</h2><p>Информация о студенте</p></div><button class="link-button" data-goto="profile">Изменить →</button></div>
+            <div class="profile-summary"><div class="big-avatar" id="dashboardAvatar">АБ</div><div><b id="dashboardName">Загрузка профиля…</b><small>Студент</small></div></div>
+            <div class="info-row"><span>Факультет</span><b>—</b></div><div class="info-row"><span>Группа</span><b>—</b></div><div class="info-row"><span>Год поступления</span><b>—</b></div>
+          </section>
+        </div>
+        <section class="panel announcement"><div class="announcement-icon">✦</div><div><b>Добро пожаловать в новый семестр!</b><p>Проверьте расписание, ознакомьтесь с силлабусами и учебными материалами по своим предметам.</p></div><button class="primary-button" data-goto="materials">Открыть материалы</button></section>
+      </section>
+
+      <!-- Сессия -->
+      <section class="page" id="page-session">
+        <div class="page-head"><div><div class="eyebrow">ОЦЕНКИ И УСПЕВАЕМОСТЬ</div><h1>Сессия</h1><p>Выберите предмет, чтобы посмотреть баллы за семестр, посещённые темы, пропуски и учебные материалы.</p></div></div>
+        <div class="toolbar"><label>Учебный семестр<select id="gradeSemester"><option value="all">Все учебные периоды</option></select></label><span class="muted-note">Нажмите на карточку предмета для подробной информации</span></div>
+        <div class="session-overview"><div><small>ПРЕДМЕТОВ В СЕМЕСТРЕ</small><b id="sessionSubjectCount">—</b></div><div><small>СРЕДНЯЯ СУММА МОДУЛЕЙ</small><b>—</b></div><div><small>ПРЕДМЕТОВ С ОЦЕНКАМИ</small><b>—</b></div></div>
+        <section class="panel grade-calculator"><div class="panel-title"><div><h2>Калькулятор баллов</h2><p>Рассчитайте, сколько нужно набрать за второй модуль, чтобы получить желаемую сумму двух модулей.</p></div></div><div class="toolbar"><label>Предмет<select id="gradeCalcSubject"></select></label><label>Желаемая сумма баллов (из 50)<input id="gradeCalcTarget" type="number" min="0" max="50" step="0.5" value="40"></label></div><p id="gradeCalcResult" class="muted-note">Выберите предмет для расчёта.</p></section>
+        <div class="subject-score-list" id="subjectScoreList"></div>
+        
+      </section>
+
+      <!-- Материалы -->
+      <section class="page" id="page-materials">
+        <div class="page-head"><div><div class="eyebrow">ОБУЧЕНИЕ</div><h1>Учебные материалы</h1><p>Лекции, презентации, задания и силлабусы — по темам каждого предмета.</p></div></div>
+        <div class="toolbar"><label>Предмет<select id="materialSubject"></select></label><label>Тип материала<select id="materialType"><option value="all">Все материалы</option><option value="lecture">Лекции</option><option value="presentation">Презентации</option><option value="task">Задания</option><option value="syllabus">Силлабус</option></select></label><input class="search" id="materialSearch" placeholder="Поиск по названию..."></div>
+        <div class="subject-banner"><div class="subject-symbol">▧</div><div><b id="materialSubjectName">Программирование</b><small>Материалы назначенных предметов</small></div><button class="outline-button" id="syllabusOpen">Открыть силлабус</button></div>
+        <div id="topicsContainer" class="topics"></div>
+      </section>
+
+      <!-- Расписание -->
+      <section class="page" id="page-schedule">
+        <div class="page-head"><div><div class="eyebrow">УЧЕБНЫЙ ПРОЦЕСС</div><h1>Расписание</h1><p>Занятия на текущую учебную неделю.</p></div></div>
+        <div class="schedule-caption">Постоянное недельное расписание вашей группы</div>
+        <div class="schedule-grid" id="scheduleGrid"></div>
+      </section>
+
+      <!-- Посещаемость -->
+      <section class="page" id="page-attendance">
+        <div class="page-head"><div><div class="eyebrow">УЧЕБНАЯ АКТИВНОСТЬ</div><h1>Посещаемость</h1><p>Проверяйте отметки по занятиям и предметам.</p></div></div>
+        <div class="grade-summary"><article class="summary-card"><small>ПОСЕЩАЕМОСТЬ</small><strong>—</strong><p>Нет данных</p></article><article class="summary-card"><small>ПОСЕЩЕНО</small><strong>—</strong><p>Нет данных</p></article><article class="summary-card"><small>ПРОПУЩЕНО</small><strong>—</strong><p>Нет данных</p></article></div>
+        <section class="panel"><div class="panel-title"><div><h2>Посещаемость по предметам</h2><p>Данные появятся после заполнения журнала</p></div></div><div class="attendance-list"><p class="muted-note">Данные о посещаемости пока не внесены.</p></div></section>
+      </section>
+
+      <section class="page" id="page-notifications"><div class="page-head"><div><div class="eyebrow">ВАЖНЫЕ ОБНОВЛЕНИЯ</div><h1>Уведомления</h1><p>Новые материалы, изменения журнала и расписания.</p></div></div><section class="panel"><div id="studentNotifications"></div></section></section>
+
+      <!-- AI-помощник -->
+      <section class="page" id="page-ai">
+        <div class="page-head"><div><div class="eyebrow">УМНОЕ ОБУЧЕНИЕ</div><h1>AI-помощник YOUR DAY</h1><p>Объяснение тем, подготовка к экзаменам и разбор материалов преподавателей.</p></div></div>
+        <section class="panel"><div class="panel-title"><div><h2>Разобрать учебный материал</h2><p>Можно выбрать загруженный преподавателем PDF, DOCX или TXT.</p></div></div><label>Материал преподавателя<select id="aiMaterial"><option value="0">Без прикреплённого материала</option></select></label><form id="aiForm" class="ai-form"><textarea id="aiQuestion" rows="4" maxlength="12000" required placeholder="Например: объясни эту тему простыми словами и приведи три примера..."></textarea><button class="primary-button" type="submit">Отправить вопрос</button></form><p class="muted-note">Ответы AI могут содержать ошибки. Проверяйте важные сведения по материалам преподавателя.</p></section>
+        <section class="panel"><div class="panel-title"><div><h2>Диалог</h2><p>История сохраняется в вашем аккаунте.</p></div></div><div id="aiConversation" class="ai-conversation"></div></section>
+      </section>
+
+      <!-- Мессенджер -->
+      <section class="page" id="page-messages">
+        <div class="page-head"><div><div class="eyebrow">ОБЩЕНИЕ</div><h1>Сообщения</h1><p>Переписка с одногруппниками, преподавателями и куратором.</p></div></div>
+        <section class="panel"><div class="messenger-start"><label>Новый чат<select id="messageContact"><option value="">Выберите собеседника</option></select></label><input id="firstMessage" placeholder="Напишите первое сообщение"><button id="startChat" class="primary-button" type="button">Начать чат</button></div></section>
+        <div class="messenger-layout"><section class="panel"><h2>Мои чаты</h2><div id="studentChatList"></div></section><section class="panel"><h2 id="studentChatTitle">Выберите чат</h2><div id="studentChatMessages" class="chat-messages"></div><form id="studentMessageForm" class="messenger-send"><input id="studentMessageText" placeholder="Сообщение..." maxlength="5000" required><button class="primary-button" type="submit">Отправить</button></form></section></div>
+      </section>
+
+      <!-- Персональный планировщик -->
+      <section class="page" id="page-tasks">
+        <div class="page-head"><div><div class="eyebrow">ПЛАНИРОВАНИЕ</div><h1>Мои учебные задачи</h1><p>Собирайте лабораторные, СРС и личные учебные планы в одном месте.</p></div></div>
+        <section class="panel">
+          <div class="panel-title"><div><h2>Добавить задачу</h2><p>Укажите срок и приоритет выполнения.</p></div></div>
+          <form id="personalTaskForm" class="profile-form">
+            <label>Название<input id="taskTitle" maxlength="200" required placeholder="Например: закончить лабораторную № 3"></label>
+            <label>Срок выполнения<input id="taskDueAt" type="datetime-local"></label>
+            <label>Приоритет<select id="taskPriority"><option value="1">Высокий</option><option value="2" selected>Обычный</option><option value="3">Низкий</option></select></label>
+            <label class="full">Описание<textarea id="taskDescription" rows="3" placeholder="Что необходимо сделать?"></textarea></label>
+            <div class="form-actions"><button type="submit" class="primary-button">Добавить задачу</button></div>
+          </form>
+        </section>
+        <section class="panel"><div class="panel-title"><div><h2>План подготовки к экзамену</h2><p>Разбейте подготовку на темы — YOUR DAY распределит их по дням до экзамена.</p></div></div><form id="studyPlanForm" class="profile-form"><label>Предмет<select id="studyPlanSubject" required></select></label><label>Дата экзамена<input id="studyPlanExamDate" type="date" required></label><label class="full">Темы (каждая с новой строки)<textarea id="studyPlanTopics" rows="5" required placeholder="Нормализация баз данных&#10;SQL JOIN&#10;Индексы и транзакции"></textarea></label><div class="form-actions"><button type="submit" class="primary-button">Создать план подготовки</button></div></form></section>
+        <section class="panel"><div class="panel-title"><div><h2>Список задач</h2><p>Изменения сохраняются в аккаунте.</p></div></div><div id="personalTasksList"></div></section>
+      </section>
+
+      <!-- Портфолио студента -->
+      <section class="page" id="page-portfolio">
+        <div class="page-head"><div><div class="eyebrow">МОИ ДОСТИЖЕНИЯ</div><h1>Портфолио студента</h1><p>Проекты, лабораторные, сертификаты, навыки и лучшие работы.</p></div></div>
+        <section class="panel">
+          <div class="panel-title"><div><h2>Добавить работу</h2><p>Покажите, что вы умеете делать на практике.</p></div></div>
+          <form id="portfolioForm" class="profile-form">
+            <label>Название<input id="portfolioTitle" maxlength="200" required placeholder="Название проекта или достижения"></label>
+            <label>Категория<select id="portfolioCategory"><option value="project">Проект</option><option value="certificate">Сертификат</option><option value="lab">Лабораторная</option><option value="achievement">Достижение</option><option value="skill">Навык</option><option value="other">Другое</option></select></label>
+            <label class="full">Описание<textarea id="portfolioDescription" rows="3" placeholder="Кратко расскажите о своей работе"></textarea></label>
+            <label>Навыки<input id="portfolioSkills" placeholder="Go, SQL, HTML, CSS"></label>
+            <label>Ссылка на работу или сертификат<input id="portfolioURL" type="url" placeholder="https://..."></label>
+            <label><span>Показывать в публичном портфолио</span><input id="portfolioPublic" type="checkbox"></label>
+            <div class="form-actions"><button type="submit" class="primary-button">Добавить в портфолио</button></div>
+          </form>
+        </section>
+        <section class="panel"><div class="panel-title"><div><h2>Мои работы</h2><p>Публикуйте выбранные работы и делитесь ссылкой на портфолио.</p></div><a id="publicPortfolioLink" class="outline-button" target="_blank" rel="noopener">Открыть публичную страницу ↗</a></div><div id="portfolioItems"></div></section>
+      </section>
+
+      <!-- Группа -->
+      <section class="page" id="page-group">
+        <div class="page-head"><div><div class="eyebrow">МОЁ ОКРУЖЕНИЕ</div><h1>Моя группа</h1><p>Информация о группе и список одногруппников.</p></div></div>
+        <div class="group-banner"><div><small>ВАША УЧЕБНАЯ ГРУППА</small><h2>ИВТ-1-23</h2><p>Информационные технологии · 3 курс · Очная форма</p></div><div class="group-count"><b>25</b><small>студентов</small></div></div>
+        <section class="panel curator-panel"><div class="panel-title"><div><h2>Мой куратор</h2><p id="curatorInfo">Загрузка информации…</p></div></div></section>
+        <section class="panel"><div class="panel-title"><div><h2>Список группы</h2><p>Студенты вашей учебной группы</p></div><input class="search" id="groupSearch" placeholder="Найти студента..."></div><div class="student-list" id="studentList"></div></section>
+      </section>
+
+      <!-- Профиль -->
+      <section class="page" id="page-profile">
+        <div class="page-head"><div><div class="eyebrow">ЛИЧНЫЕ ДАННЫЕ</div><h1>Мой профиль</h1><p>Просматривайте и редактируйте контактную информацию.</p></div></div>
+        <div class="profile-layout"><section class="panel profile-card"><div class="big-avatar profile-avatar" id="profileAvatar">АБ</div><h2 id="profileDisplayName">Загрузка профиля…</h2><p>Студент</p><span class="verified">Активный студент</span><hr><div class="profile-detail"><span>Факультет</span><b>—</b></div><div class="profile-detail"><span>Курс</span><b>—</b></div><div class="profile-detail"><span>Группа</span><b>—</b></div></section>
+          <section class="panel"><div class="panel-title"><div><h2>Редактирование профиля</h2><p>Контактные данные доступны для просмотра. Изменения вносит администратор.</p></div></div><form id="profileForm" class="profile-form"><label>Фамилия<input id="lastName" required value=""></label><label>Имя<input id="firstName" required value=""></label><label>Отчество<input id="middleName" value=""></label><label>Дата рождения<input id="birthDate" type="date" value=""></label><label>Телефон<input id="phone" type="tel" value=""></label><label>Электронная почта<input id="email" type="email" value=""></label><label class="full">Адрес проживания<input id="address" value=""></label><div class="form-actions"><button type="submit" class="primary-button">Сохранить изменения</button><button type="reset" class="outline-button">Сбросить</button></div></form></section></div>
+      </section>
+    </div>
+    <footer>© 2026 YOUR DAY <span>Образовательная платформа нового поколения</span><span>Личный кабинет студента</span></footer>
+  </main>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<div class="modal-backdrop" id="modal"><div class="modal"><button class="modal-close" id="modalClose">×</button><div id="modalContent"></div></div></div>
+<script src="/static/js/student.js"></script>
+</body>
+</html>
